@@ -1,20 +1,64 @@
 import React, { Component } from 'react';
 
-import Movie from './components/Movie/Movie'
+import Movies from './components/Movies/Movies'
+import axios from 'axios'
+import SearchMovie from './components/SearchMovie/SearchMovie'
 
-const FEATURED_API = "https://api.themoviesdb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1"
-const SEARCH_API = "https://api.themoviesdb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query"
-const IMAGE_API = "https://image.tmdb.org/t/p/w1280"
+const API_KEY = 'eb73f2959b63226925762febe27af005'
 
 class App extends Component {
   state = {
-    movies: ['1', '2', '3']
+    movies: [],
+    searchInput: ''
+  }
+
+  componentDidMount() {
+    axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=1`)
+      .then(response => {
+        this.setState({
+          movies: response.data.results
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+
+  handleOnSubmit = (e) => {
+    e.preventDefault()
+    const search = this.state.searchInput
+    axios.get(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&query=${search}`)
+      .then(response => {
+        this.setState({
+          movies: response.data.results
+        })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+      this.setState({
+        searchInput: ''
+      })
+  }
+
+  handleOnChange = (e) => {
+    this.setState({
+      searchInput: e.target.value
+    })
   }
 
   render() {
     return (
-      <div className="App">
-        <Movie movies={this.state.movies} />
+      <div>
+        <header>
+          <SearchMovie 
+            searchInput={this.state.searchInput} 
+            handleSubmit={this.handleOnSubmit}
+            handleChange={this.handleOnChange}
+          />
+        </header>
+        <Movies movies={this.state.movies} />
       </div>
     );
   }
