@@ -12,7 +12,11 @@ function Movie(props) {
       <img src={IMAGE_API + poster_path} alt={title}/>
       <div className={classes.Movie_info}>
         <h3> {title} </h3>
-        <span> {vote_average} </span>
+        <span className={ 
+          (vote_average >= 8) ? classes.VoteGreen : (vote_average >= 6) ? classes.VoteOrange : classes.VoteRed}
+        > 
+          {vote_average} 
+        </span>
       </div>
 
       <div className={classes.Movie_overview}>

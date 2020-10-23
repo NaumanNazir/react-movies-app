@@ -44,3 +44,21 @@
 .Movie:hover .Movie_overview{
   transform: translateY(0%);
 }
+
+.VoteGreen, .VoteOrange, .VoteRed {
+  background-color: #22254b;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.VoteGreen {
+  color: green;
+}
+
+.VoteOrange {
+  color: orange;
+}
+
+.VoteRed {
+  color: red;
+}
