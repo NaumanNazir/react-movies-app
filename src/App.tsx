@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import User from './components/Interfaces/User.interfaces'
 import Movies from './components/Movies/Movies'
 import axios from 'axios'
 import SearchMovie from './components/SearchMovie/SearchMovie'
@@ -9,16 +10,17 @@ const API_KEY = 'eb73f2959b63226925762febe27af005'
 const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=1`
 const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&query=`
 
-class App extends Component {
+class App extends Component<User> {
   state = {
-    movies: [],
+    movies: Array,
     loading: false,
     searchInput: '',
   }
   
   // we had two functions with the same behavior, so we made a new function.
   // responsible for fetching movies.
-  getMovies = (API) => {
+
+  getMovies = (API: string) => {
     this.setState({loading: true})
     axios.get(API)
       .then(response => {
@@ -33,57 +35,25 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // two approaches you can take
-
-    // 1 - make a function and call it here, like the line below
     this.getMovies(FEATURED_API)
-
-    // 2 - put all the functionality here, like the code given below
-    // axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=1`)
-    //   .then(response => {
-    //     this.setState({
-    //       movies: response.data.results
-    //     })
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
     
   }
 
-  handleOnSubmit = (e) => {
+  handleOnSubmit = (e: KeyboardEvent) => {
     e.preventDefault()
     
     const search = this.state.searchInput
     if (!!search) {
-      // same we did in componentDidMount
       this.getMovies(SEARCH_API+search)
-
       this.setState({
         searchInput: ''
       })
-
-
-      // same we did in componentDidMount
-      // axios.get(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&query=${search}`)
-      //   .then(response => {
-      //     this.setState({
-      //       movies: response.data.results
-      //     })
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
-
-      //   this.setState({
-      //     searchInput: ''
-      //   })
-      }
+    }
   }
 
-  handleOnChange = (e) => {
+  handleOnChange = (e: KeyboardEvent) => {
     this.setState({
-      searchInput: e.target.value
+      searchInput: (e.target as HTMLInputElement).value
     })
   }
 
@@ -109,3 +79,44 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+
+
+// This is the second way to fetch api.
+
+// componentDidMount() {
+//   axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=1`)
+//     .then(response => {
+//       this.setState({
+//         movies: response.data.results
+//       })
+//     })
+//     .catch(error => {
+//       console.log(error)
+//     }) 
+// }
+
+// handleOnSubmit = (e) => {
+//   e.preventDefault()
+  
+//   const search = this.state.searchInput
+//   if (!!search) {
+//     same we did in componentDidMount
+
+//     axios.get(`https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&query=${search}`)
+//       .then(response => {
+//         this.setState({
+//           movies: response.data.results
+//         })
+//       })
+//       .catch(error => {
+//         console.log(error)
+//       })
+
+//       this.setState({
+//         searchInput: ''
+//       })
+//     }
+// }
