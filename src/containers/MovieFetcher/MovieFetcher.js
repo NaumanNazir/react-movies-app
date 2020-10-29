@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 
-import User from './components/Interfaces/User.interfaces'
-import Movies from './components/Movies/Movies'
 import axios from 'axios'
-import SearchMovie from './components/SearchMovie/SearchMovie'
-import Spinner from './components/Spinner/Spinner'
+import Movies from '../../components/Movies/Movies'
+import SearchMovie from '../../components/SearchMovie/SearchMovie'
+import Spinner from '../../components/Spinner/Spinner'
 
 const API_KEY = 'eb73f2959b63226925762febe27af005'
 const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=1`
 const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&query=`
 
-class App extends Component<User> {
+class App extends Component {
   state = {
-    movies: Array,
+    movies: [],
     loading: false,
     searchInput: '',
   }
@@ -20,7 +19,7 @@ class App extends Component<User> {
   // we had two functions with the same behavior, so we made a new function.
   // responsible for fetching movies.
 
-  getMovies = (API: string) => {
+  getMovies = (API) => {
     this.setState({loading: true})
     axios.get(API)
       .then(response => {
@@ -39,7 +38,7 @@ class App extends Component<User> {
     
   }
 
-  handleOnSubmit = (e: KeyboardEvent) => {
+  handleOnSubmit = (e) => {
     e.preventDefault()
     
     const search = this.state.searchInput
@@ -51,9 +50,9 @@ class App extends Component<User> {
     }
   }
 
-  handleOnChange = (e: KeyboardEvent) => {
+  handleOnChange = (e) => {
     this.setState({
-      searchInput: (e.target as HTMLInputElement).value
+      searchInput: e.target.value
     })
   }
 
@@ -70,7 +69,7 @@ class App extends Component<User> {
             searchInput={this.state.searchInput} 
             handleSubmit={this.handleOnSubmit}
             handleChange={this.handleOnChange}
-          />
+          /> 
         </header>
         {renderMovies}
       </div>
