@@ -1,12 +1,32 @@
-.Search_input {
+form {
+  display:flex;
+  flex-direction:row;
   background-color: white;
-  border: 2px solid #22254b;
+  border: none;
   border-radius: 30px;
+  padding:2px;
+}
+
+.Search_input {
+  flex-grow: 2;
   font-family: inherit;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
   padding: 0.5rem 1.5rem;
 }
 
 .Search_input:focus {
   outline: 0;
 }
+
+.SearchBtn {
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(90deg, rgba(24,206,183,1) 0%, rgba(7,186,217,1) 60%);
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+} 

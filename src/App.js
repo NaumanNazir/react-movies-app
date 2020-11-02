@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import MovieFetcher from './containers/MovieFetcher/MovieFetcher'
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <MovieFetcher />
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div>
+      <MovieFetcher />
+    </div>
+  );
 }
 
 export default App;

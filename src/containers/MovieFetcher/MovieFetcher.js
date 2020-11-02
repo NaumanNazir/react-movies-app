@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 import axios from 'axios'
+import MenuBar from '../../components/Navigation/MenuBar/MenuBar'
+import Banner from '../../components/Banner/Banner'
 import Movies from '../../components/Movies/Movies'
-import SearchMovie from '../../components/SearchMovie/SearchMovie'
 import Spinner from '../../components/Spinner/Spinner'
 
 const API_KEY = 'eb73f2959b63226925762febe27af005'
@@ -64,13 +65,12 @@ class App extends Component {
 
     return (
       <div>
-        <header>
-          <SearchMovie 
-            searchInput={this.state.searchInput} 
-            handleSubmit={this.handleOnSubmit}
-            handleChange={this.handleOnChange}
-          /> 
-        </header>
+        <MenuBar />
+        <Banner
+          searchInput={this.state.searchInput} 
+          handleSubmit={this.handleOnSubmit}
+          handleChange={this.handleOnChange} 
+        />
         {renderMovies}
       </div>
     );

@@ -9,10 +9,16 @@ function SearchMovie(props) {
         <input 
           className={classes.Search_input} 
           type="search" 
-          placeholder="Search..."
+          placeholder="Search for a movie"
           value={props.searchInput}
           onChange={props.handleChange} 
         />
+        <button 
+          className={classes.SearchBtn}
+          onClick={props.handleSubmit}
+        > 
+          Search 
+        </button>
       </form>
     </div>
   )
