@@ -2,13 +2,10 @@ import React from 'react'
 
 import classes from './NavigationItem.module.css'
 
-function NavigationItem() {
+function NavigationItem(props) {
   return (
     <React.Fragment>
-      <a href="#home" className={classes.NavLink}> Home </a>
-      <a href="#movies" className={classes.NavLink}> Movies </a>
-      <a href="#tv-shoes" className={classes.NavLink}> TV Shows </a>
-      <a href="#people" className={classes.NavLink}> People </a>
+      <a href={props.link} className={classes.NavLink}> {props.children} </a>
     </React.Fragment>
   )
 }
