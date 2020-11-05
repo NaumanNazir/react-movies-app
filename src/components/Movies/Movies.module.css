@@ -1,7 +1,13 @@
 .Movies_container {
   width: 85%;
+  max-height: 500px;
   display: flex;
-  justify-content: center;
-  overflow: scroll;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-top: 20px;
+  padding-bottom: 100px;
   margin: 0 auto;
 }
+

@@ -8,7 +8,7 @@ function Movies(props) {
   return (
     <div className={classes.Movies_container}>
       {
-        movies.map(movie => <Movie key={movie.id} movie={movie}/>)
+        movies.map(movie => <Movie className={classes.Movie} key={movie.id} movie={movie}/>)
       }
     </div>
   )
