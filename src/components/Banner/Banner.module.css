@@ -1,11 +1,12 @@
 .MainBanner {
   height: 310px;
   width: 85%;
-  background: url('../../assets/images/mortal-engines.jpg')no-repeat,rgba(2, 90, 126, 0.7);
+  background: url('../../assets/images/mortal-engines.jpg') no-repeat,
+    rgba(2, 90, 126, 0.7);
   background-blend-mode: overlay;
   background-position: center;
   background-size: cover;
-  margin: 0 auto 50px;
+  margin: 0 auto;
   padding: 40px;
 }
 
