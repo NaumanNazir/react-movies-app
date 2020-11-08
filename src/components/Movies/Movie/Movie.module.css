@@ -15,6 +15,24 @@
   border-radius: 10px;
 }
 
+.Tooltip {
+  position: absolute;
+  background-color: #eeeeeeb0;
+  left: 118px;
+  top: 10px;
+  padding: 1px 5px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.Tooltip:hover {
+  background-color: #ffb146;
+}
+
+.Tooltip svg {
+  vertical-align: middle;
+}
+
 .Content h3 {
   font-size: 14px;
   font-weight: 700;
