@@ -7,12 +7,15 @@ import Movies from "../../components/Movies/Movies";
 import Spinner from "../../components/Spinner/Spinner";
 
 const API_KEY = "eb73f2959b63226925762febe27af005";
-const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=1`;
+const DEFAULT_CATEGORY = "all";
+// const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=1`;
+const TRENDING_API = `https://api.themoviedb.org/3/trending/${DEFAULT_CATEGORY}/week?api_key=${API_KEY}`;
 const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&query=`;
 
 class App extends Component {
   state = {
     movies: [],
+    activeCategory: DEFAULT_CATEGORY,
     loading: false,
     searchInput: "",
   };
@@ -25,7 +28,7 @@ class App extends Component {
     axios
       .get(API)
       .then((response) => {
-        // console.log(response.data.results);
+        console.log(response.data.results);
         this.setState({
           movies: response.data.results,
           loading: false,
@@ -37,8 +40,14 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.getMovies(FEATURED_API);
+    this.getMovies(TRENDING_API);
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.activeCategory !== this.state.activeCategory) {
+  //     this.getMovies(TRENDING_API);
+  //   }
+  // }
 
   handleOnSubmit = (e) => {
     e.preventDefault();
@@ -58,11 +67,23 @@ class App extends Component {
     });
   };
 
+  handleSelectCategory = (category) => {
+    // this.setState({
+    //   activeCategory: category,
+    //   loading: true,
+    // });
+
+    console.log(category);
+  };
+
   render() {
     let renderMovies = this.state.loading ? (
       <Spinner />
     ) : (
-      <Movies movies={this.state.movies} />
+      <Movies
+        movies={this.state.movies}
+        handleSelectCategory={this.handleSelectCategory}
+      />
     );
 
     return (

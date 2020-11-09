@@ -1,6 +1,7 @@
 .MainBanner {
   height: 310px;
   width: 85%;
+  color: white;
   background: url('../../assets/images/mortal-engines.jpg') no-repeat,
     rgba(2, 90, 126, 0.7);
   background-blend-mode: overlay;
