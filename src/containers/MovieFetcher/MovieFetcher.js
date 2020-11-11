@@ -7,15 +7,14 @@ import Movies from "../../components/Movies/Movies";
 import Spinner from "../../components/Spinner/Spinner";
 
 const API_KEY = "eb73f2959b63226925762febe27af005";
-const DEFAULT_CATEGORY = "all";
 // const FEATURED_API = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&sort_by=popularity.desc&page=1`;
-const TRENDING_API = `https://api.themoviedb.org/3/trending/${DEFAULT_CATEGORY}/week?api_key=${API_KEY}`;
+const TRENDING_API = `https://api.themoviedb.org/3/trending/all/week?api_key=${API_KEY}`;
 const SEARCH_API = `https://api.themoviedb.org/3/search/movie?&api_key=${API_KEY}&query=`;
 
 class App extends Component {
   state = {
     movies: [],
-    activeCategory: DEFAULT_CATEGORY,
+    activeCategory: "all",
     loading: false,
     searchInput: "",
   };
